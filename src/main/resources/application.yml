@@ -1,0 +1,57 @@
+#配置文件中能写什么？
+#在这里面能配置的东西 都有一个规律 xxxProperties（绑定我们写的配置文件）  xxxAutoConfiguration自动配置 自动装载
+#这样我们就可以用我们自定义的配置了
+person:
+  name: surong
+  age: 18
+  happy: false
+  birth: 2001/10/24
+  maps: {k1: v1,k2: v2}
+  hello: happy
+  lists:
+    -dog
+    -music
+    -girl
+  dog:
+    name: ${person.hello:hello}旺仔
+    age: 3
+
+dog:
+  name: 小仔
+  age: 3
+---
+#查看拿一些自动配置类生效了
+debug: true
+---
+#切换配置
+spring:
+  profiles:
+    active: test
+---
+#开发环境
+server:
+  port: 8081
+spring:
+  config:
+    activate:
+      on-profile: dev
+---
+#测试环境
+server:
+  port: 8085
+spring:
+  config:
+    activate:
+      on-profile: test
+---
+#生产环境
+server:
+  port: 8084
+spring:
+  config:
+    activate:
+      on-profile: prod
+---
+spring:
+  activemq:
+    broker-url:
